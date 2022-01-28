@@ -5,18 +5,18 @@ using UnityEngine;
 public class LevelManager : MonoBehaviour
 {
     
-    GameObject Blue;
-    GameObject Orange;
-    private AmmountCheck AC1, AC2;
-    public int BlueAmmount, OrangeAmmount;
+    GameObject blue;
+    GameObject orange;
+    private AmmountCheck ac1, ac2;
+    public int blueAmmount, orangeAmmount;
     void Start()
     {
-        Blue = GameObject.Find("BlueCup");
-        Orange = GameObject.Find("OrangeCup");
-        AC1 = Blue.GetComponent<AmmountCheck>();
-        AC2 = Orange.GetComponent<AmmountCheck>();
-        BlueAmmount = AC1.AmmountCollected;
-        OrangeAmmount = AC2.AmmountCollected;
+        blue = GameObject.Find("BlueCup");
+        orange = GameObject.Find("OrangeCup");
+        ac1 = blue.GetComponent<AmmountCheck>();
+        ac2 = orange.GetComponent<AmmountCheck>();
+        blueAmmount = ac1.AmmountCollected;
+        orangeAmmount = ac2.AmmountCollected;
     }
    
 }
