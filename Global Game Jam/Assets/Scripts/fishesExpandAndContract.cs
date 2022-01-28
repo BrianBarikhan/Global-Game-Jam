@@ -7,9 +7,8 @@ public class fishesExpandAndContract : MonoBehaviour
     public float maxRadius;
     public float minRadius;
     public float radiusChangeSpeed;
-    public GameObject thisFish;
-    public GameObject otherFish;
-    public GameObject parentObjectFish;
+    public GameObject fish1;
+    public GameObject fish2;
     public KeyCode contractingButton;
     public KeyCode expandingButton;
     public float rotationSpeed;
@@ -19,7 +18,7 @@ public class fishesExpandAndContract : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        temporaryRadius = Mathf.Sqrt(Mathf.Pow(thisFish.transform.position.x - otherFish.transform.position.x, 2) + Mathf.Pow(thisFish.transform.position.y - otherFish.transform.position.y ,2));
+        temporaryRadius = Mathf.Sqrt(Mathf.Pow(fish1.transform.position.x - fish2.transform.position.x, 2) + Mathf.Pow(fish1.transform.position.y - fish2.transform.position.y ,2));
         temporaryRotation = transform.rotation.eulerAngles;
     }
 
@@ -31,9 +30,9 @@ public class fishesExpandAndContract : MonoBehaviour
         {
             if (Input.GetKey(contractingButton))
             {
-                thisFish.transform.position = Vector2.MoveTowards(thisFish.transform.position, parentObjectFish.transform.position, radiusChangeSpeed);
-                otherFish.transform.position = Vector2.MoveTowards(otherFish.transform.position, parentObjectFish.transform.position, radiusChangeSpeed);
-                temporaryRadius = Mathf.Sqrt(Mathf.Pow(thisFish.transform.position.x - otherFish.transform.position.x, 2) + Mathf.Pow(thisFish.transform.position.y - otherFish.transform.position.y, 2));
+                fish1.transform.position = Vector2.MoveTowards(fish1.transform.position, transform.position, radiusChangeSpeed);
+                fish2.transform.position = Vector2.MoveTowards(fish2.transform.position, transform.position, radiusChangeSpeed);
+                temporaryRadius = Mathf.Sqrt(Mathf.Pow(fish1.transform.position.x - fish2.transform.position.x, 2) + Mathf.Pow(fish1.transform.position.y - fish2.transform.position.y, 2));
 
             }
         }
@@ -42,15 +41,15 @@ public class fishesExpandAndContract : MonoBehaviour
         {
             if (Input.GetKey(expandingButton))
             {
-                thisFish.transform.position = Vector2.MoveTowards(thisFish.transform.position, parentObjectFish.transform.position, -radiusChangeSpeed);
-                otherFish.transform.position = Vector2.MoveTowards(otherFish.transform.position, parentObjectFish.transform.position, -radiusChangeSpeed);
-                temporaryRadius = Mathf.Sqrt(Mathf.Pow(thisFish.transform.position.x - otherFish.transform.position.x, 2) + Mathf.Pow(thisFish.transform.position.y - otherFish.transform.position.y, 2));
+                fish1.transform.position = Vector2.MoveTowards(fish1.transform.position, transform.position, -radiusChangeSpeed);
+                fish2.transform.position = Vector2.MoveTowards(fish2.transform.position, transform.position, -radiusChangeSpeed);
+                temporaryRadius = Mathf.Sqrt(Mathf.Pow(fish1.transform.position.x - fish2.transform.position.x, 2) + Mathf.Pow(fish1.transform.position.y - fish2.transform.position.y, 2));
 
 
             }
         }
-        temporaryRotation.z += rotationSpeed;
-        parentObjectFish.transform.rotation = Quaternion.Euler(temporaryRotation);
+        temporaryRotation.z -= rotationSpeed;
+        transform.rotation = Quaternion.Euler(temporaryRotation);
         
     }
 }
